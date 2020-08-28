@@ -17,7 +17,8 @@ export default class TasksController {
     event.preventDefault()
     let form = event.target
     let rawTask = {
-      title: form.title.value
+      title: form.title.value,
+      color: form.color.value
     }
     TasksService.newTask(rawTask)
     _drawTask()
@@ -27,6 +28,20 @@ export default class TasksController {
     let form = event.target
     let rawsubtask = form.subtask.value 
     TasksService.newSubTask(rawsubtask, id)
+    _drawTask()
+  }
+
+  removeTask(id){
+    let check = confirm("you sure?")
+    if (check != true){return}
+    TasksService.removeTask(id)
+    _drawTask()
+
+  }
+  removeSubTask(id, subtaskvalue){
+    let check = confirm("you sure?")
+    if (check != true){return}
+    TasksService.removeSubTask(id, subtaskvalue)
     _drawTask()
   }
 }

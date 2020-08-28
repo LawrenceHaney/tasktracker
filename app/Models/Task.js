@@ -1,16 +1,17 @@
 import {generateId} from "../utils.js"
 export default class Task {
-    constructor({title, id}) {
+    constructor({title, color, id, subtask}) {
         this.title = title
+        this.color = color
         this.id = id || generateId()
-        this.subtask= []
+        this.subtask= subtask || []
     }
 
     get Template() {
         return `
-        <div class="card bg-warning">
-        <div class="card bg-primary text-light d-flex flex-column">
-        <i class="fas fa-times text-danger align-self-end"></i>
+        <div class="card bg-warning offset-1 col-3">
+        <div class="card text-light d-flex flex-column" style="background-color: ${this.color}">
+        <i class="fas fa-times text-danger align-self-end" onclick="app.tasksController.removeTask('${this.id}')"></i>
         <h1 class="align-self-center">${this.title}</h>
         </div>
         <ol>
@@ -18,7 +19,7 @@ export default class Task {
         </ol>
         <div>
         <form class="form-inline row" onsubmit="app.tasksController.newSubTask(event, '${this.id}')">
-                <div class="form-group p-2">
+                <div class="form-group">
                     <label class="mr-1" for="title">task</label>
                     <input type="text" name="subtask" id="subtask-${this.id}" class="form-control" placeholder="..." >
                 </div>
@@ -31,7 +32,7 @@ export default class Task {
     get SubtaskTemplate(){
         let template =''
         this.subtask.forEach(t => {
-            template += `<li> ${t} <i class="fas fa-times text-danger align-self-end"></i> </li>`
+            template += `<li> ${t} <i class="fas fa-times text-danger align-self-end" onclick="app.tasksController.removeSubTask('${this.id}', '${t}')"></i> </li>`
         })
         
         return template
