@@ -3,7 +3,6 @@ import Task from "./Models/Task.js";
 let _state = {
 
   tasks: [
-    new Task({ title: "Task" })
   ]
 };
 function _loadData(){
