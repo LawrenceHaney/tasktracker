@@ -44,4 +44,19 @@ export default class TasksController {
     TasksService.removeSubTask(id, subtaskvalue)
     _drawTask()
   }
+  removeDubTask(id, subtaskvalue){
+    let check = confirm("you sure?")
+    if (check != true){return}
+    TasksService.removeDubTask(id, subtaskvalue)
+    _drawTask()}
+  moveToDone(id, task){
+    TasksService.moveToDone(id, task)
+    _drawTask()
+
+  }
+  moveToList(id, task){
+    TasksService.moveToList(id, task)
+    _drawTask()
+
+  }
 }

@@ -5,3 +5,13 @@ main{flex-grow: 1;}
 .task-body{
   min-height: 20vh;
 }
+#color-picker-1{
+  min-width: 3em;
+  border: 0px;
+}
+.text-shadow{
+  text-shadow: 1px 1px 3px var(--dark);
+}
+.list-css{
+  border-bottom: 1px inset var(--dark);
+}
